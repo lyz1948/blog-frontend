@@ -2,7 +2,7 @@
   #header.header
     .layout.header-wrap.flex
       Logo
-      Nav
+      //- Nav
 </template>
 <script>
 import Logo from '~/components/Logo';
@@ -26,6 +26,6 @@ export default {
 
 .header
   border-bottom: 1px solid #d9d9d9
-  .logo
-    padding: 0 20px
+  background-color: #06050c
+
 </style>

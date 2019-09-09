@@ -3,11 +3,12 @@
     .info.flex-1
       .hd
         h1 {{ article.title }}
-        .cover.img-full
-          img(:src='article.thumb', alt='图片')
+        h3 {{ article.description }}
 
       .bd
-        div(v-html='article.content')
+        .cover.img-full
+          img(:src='article.thumb', alt='图片')
+        div.content.mt20(v-html='article.content')
 
       .ft.flex
         .auth
@@ -54,23 +55,34 @@ export default {
     flex: 0 0 $img-width
     width: $img-width
     height: $img-height
-    margin: 0 auto
 
   .info
     padding-right: 20px
+    color: #333
 
-  .ft
-    span
-      display: inline-block
-      padding-right: 10px
-      cursor: default
+    .hd
+      h1
+        margin: 10px 0
+        color: #484646
+      h3
+        color: #736969
+        font-size: 18px
+    .bd
+      padding: 20px 0
+      font-size: 16px
 
-    .iconfont
-      padding-right: 6px
-      color: #969696
+    .ft
+      span
+        display: inline-block
+        padding-right: 10px
+        cursor: default
 
-    .extra
-      padding-left: 30px
-    .item
-      text-align: right
+      .iconfont
+        padding-right: 6px
+        color: #969696
+
+      .extra
+        padding-left: 30px
+      .item
+        text-align: right
 </style>

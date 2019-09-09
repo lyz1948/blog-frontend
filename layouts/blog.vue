@@ -5,21 +5,22 @@
       .layout.clearfix
         .main
           nuxt
-        Sider
-        .right
+        .sider
+          Category
           Tag
+
 </template>
 
 <script>
 import 'normalize.css';
 import Header from '~/components/Header';
-import Sider from '~/components/Sider';
+import Category from '~/components/Category';
 import Tag from '~/components/Tag';
 
 export default {
   components: {
     Header,
-    Sider,
+    Category,
     Tag
   }
 };
@@ -27,7 +28,7 @@ export default {
 <style lang="sass">
 
 .content
-  background-color: rgba(245, 245, 245, 0.5)
+  // background-color: rgba(245, 245, 245, 0.5)
 
 .main,
 .sider,
@@ -36,7 +37,7 @@ export default {
 
 .sider,
 .right
-  width: 200px
+  width: 250px
   padding: 20px
   min-height: 100%
 
@@ -44,20 +45,17 @@ export default {
   width: 100%
   background: #fff
 
-.section,
-.section .page
-  border-left: 1px solid #eaeaea
-  border-right: 1px solid #eaeaea
+// .section,
+// .section .page
+  // border-left: 1px solid #eaeaea
+  // border-right: 1px solid #eaeaea
 
 .section
-  padding: 0 200px
+  padding-right: 250px
 
 .section .page
-  padding: 20px
+  padding: 20px 20px 20px 140px
 
 .sider
-  margin-left: -100%
-
-.right
-  margin-left: -200px
+  margin-left: -250px
 </style>

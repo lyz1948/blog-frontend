@@ -10,12 +10,25 @@ html
   min-height: 100%
   overflow-x: hidden
 
+h1,h2,h3,h4,h5,h6
+  margin: 0
+
+ul
+  list-style: none
+  margin: 0
+  padding: 0
 
 .flex
   display: flex
 
 .flex-1
   flex: 1
+
+.mt10
+  margin-top: 10px
+
+.mt20
+  margin-top: 20px
 
 .clearfix
   clear: both
@@ -27,6 +40,16 @@ html
   height: 0
   visibility: hidden
 
+.line
+  position: relative
+  &::after
+    content: ""
+    position: absolute
+    left: 0
+    top: 0
+    width: 100%
+    height: 1px
+    background-color: #666
 
 .img-full img
   width: 100%

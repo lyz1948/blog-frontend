@@ -17,8 +17,8 @@ export default {
 }
 </script>
 
-<style>
-.article-list .article {
-  padding-bottom: 20px;
-}
+<style lang="sass">
+.article-list
+  .article
+    padding-bottom: 20px
 </style>

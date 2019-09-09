@@ -10,7 +10,7 @@ export const state = () => ({
 export const actions = {
   async ARTICLE_LIST({ commit }) {
     const { result } = await fetchArticle()
-    result.data.map((post) => {
+    result.data.map(post => {
       post.content = markdown.render(post.content)
     })
     commit(ARTICLE_LIST, result)

@@ -48,7 +48,7 @@ export default {
 <style lang="sass">
 .article
   border-bottom: 1px solid #eaeaea
-  margin-bottom: 20px
+  padding: 20px
 
   .cover
     $img-width: 200px
@@ -60,24 +60,40 @@ export default {
   .info
     position: relative
     padding-right: 20px
+
   .hd
+    h2
+      font-size: 24px
     &:hover
       h2
         color: #40a9ff
+  .bd
+    padding: 25px 0
+    line-height: 24px
+    font-size: 16px
+    text-align: justify
 
   .ft
     position: absolute
     bottom: 0
+    color: rgba(0, 0, 0, .85)
 
     span
       display: inline-block
       padding-right: 10px
-      cursor: default
+      font-weight: 500
+      color: #57676f
 
     .iconfont
       padding-right: 6px
-      color: #969696
+      color: #57676f
+      font-size: 18px
 
     .extra
       padding-left: 30px
+      .item
+        cursor: pointer
+        &:hover
+          .iconfont, & > span
+            color: #40a9ff
 </style>
