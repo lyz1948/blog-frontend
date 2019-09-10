@@ -20,12 +20,7 @@ export default {
 };
 </script>
 <style lang="sass">
-.layout
-  width: 1200px
-  margin: 0 auto
-
 .header
   border-bottom: 1px solid #d9d9d9
   background-color: #06050c
-
 </style>
