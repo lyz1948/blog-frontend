@@ -1,6 +1,8 @@
 <template lang="pug">
   .article-list(v-if='getList')
     Article(v-for='article in getList.data', :key='article._id', :article='article')
+
+  .article-list(v-else) 暂无文章
 </template>
 
 <script>
