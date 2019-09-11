@@ -9,7 +9,6 @@ export const state = () => ({
 export const actions = {
   async CATEGORY_LIST({ commit }) {
     const { result } = await fetchCategory()
-    console.log(result)
     commit(CATEGORY_LIST, result)
   }
 }

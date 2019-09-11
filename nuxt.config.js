@@ -1,3 +1,5 @@
+import * as CONFIG from '~/config'
+
 module.exports = {
   mode: 'universal',
   /*
@@ -53,7 +55,7 @@ module.exports = {
   },
   proxy: {
     '/api/': {
-      target: 'http://localhost:5381/api/',
+      target: CONFIG.APP.apiUrl,
       changeOrigin: true,
       pathRewrite: {
         '^/api/': ''

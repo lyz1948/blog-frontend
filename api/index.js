@@ -1,15 +1,17 @@
 import axios from 'axios'
 import { getStatus } from '~/utils'
+import * as CONFIG from '~/config'
+
 const service = axios.create({
-  baseURL: 'http://localhost:5381/api/',
+  baseURL: CONFIG.APP.apiUrl,
   timeout: 5000
 })
 
-service.interceptors.request.use((config) => {
+service.interceptors.request.use(config => {
   return config
 })
 
-service.interceptors.response.use((response) => {
+service.interceptors.response.use(response => {
   if (getStatus(response)) {
     return Promise.resolve(response.data)
   } else {
@@ -42,6 +44,6 @@ export const fetchArticle = () => {
  * 获取文章详情
  * @param {*} id 文章的id
  */
-export const getArticleDetail = (id) => {
+export const getArticleDetail = id => {
   return service.get(`/article/${id}`)
 }
