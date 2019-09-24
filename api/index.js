@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { getStatus } from '~/utils'
-import * as CONFIG from '~/config'
+// const CONFIG = require('~/config')
 
 const service = axios.create({
-  baseURL: CONFIG.APP.apiUrl,
-  timeout: 5000
+  baseURL: 'http://localhost:5381/api',
+  timeout: 10000
 })
 
 service.interceptors.request.use(config => {

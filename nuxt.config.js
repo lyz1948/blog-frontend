@@ -1,4 +1,4 @@
-import * as CONFIG from '~/config'
+// const CONFIG = require('./config')
 
 module.exports = {
   mode: 'universal',
@@ -49,19 +49,19 @@ module.exports = {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {
-    prefix: '/api',
-    proxy: true
-  },
-  proxy: {
-    '/api/': {
-      target: CONFIG.APP.apiUrl,
-      changeOrigin: true,
-      pathRewrite: {
-        '^/api/': ''
-      }
-    }
-  },
+  // axios: {
+  //   prefix: '/api',
+  //   proxy: true
+  // },
+  // proxy: {
+  //   '/api/': {
+  //     target: 'http://localhost:5381/api',
+  //     changeOrigin: true,
+  //     pathRewrite: {
+  //       '^/api/': ''
+  //     }
+  //   }
+  // },
   /*
    ** Build configuration
    */
@@ -87,6 +87,10 @@ module.exports = {
         }
       }
     }
+  },
+  server: {
+    port: 5383,
+    host: '0.0.0.0'
   },
   router: {
     base: process.env.DEPLOY_ENV === 'GH_PAGES' ? 'ykpine' : '/'

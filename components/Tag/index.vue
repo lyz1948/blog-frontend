@@ -8,8 +8,8 @@
 
 <script>
 export default {
-  data: {
-    return () {
+  data() {
+    return {
       colors: ['#33b5e5', '#fb3', '#00c851', '#ff3547', '#f50', '#2db7f5', '#87d068', '#108ee9']
     }
   },
