@@ -89,7 +89,7 @@ module.exports = {
     }
   },
   server: {
-    port: 5383,
+    port: 5380,
     host: '0.0.0.0'
   },
   router: {
