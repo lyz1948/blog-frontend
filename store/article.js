@@ -1,10 +1,11 @@
 import { fetchArticle, getArticleDetail } from '~/api'
 import { ARTICLE_LIST, DETAIL } from '~/constants'
 import markdown from '~/utils/markdown'
+import * as CONFIG from '@/config'
 
 export const state = () => ({
   list: [],
-  detail: ''
+  detail: '',
 })
 
 export const actions = {
@@ -12,6 +13,7 @@ export const actions = {
     const { result } = await fetchArticle()
     result.data.map(post => {
       post.content = markdown.render(post.content)
+      post.thumb = CONFIG.APP.prefix + post.thumb
     })
     commit(ARTICLE_LIST, result)
   },
@@ -19,8 +21,9 @@ export const actions = {
     const { article_id: id } = params
     const { result } = await getArticleDetail(id)
     result.content = markdown.render(result.content)
+    result.thumb = CONFIG.APP.prefix + result.thumb
     commit(DETAIL, result)
-  }
+  },
 }
 
 export const mutations = {
@@ -29,11 +32,11 @@ export const mutations = {
   },
   DETAIL(state, payload) {
     state.detail = payload
-  }
+  },
 }
 
 export const getters = {
   articles(state) {
     return state.list
-  }
+  },
 }

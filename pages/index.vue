@@ -15,6 +15,7 @@ export default {
     ArticleList
   },
   async fetch({ store }) {
+    await store.dispatch(TYPES.SITE_INFO)
     await store.dispatch(TYPES.FETCH_TAG)
     await store.dispatch(TYPES.FETCH_ARTICLE)
     await store.dispatch(TYPES.FETCH_CATEGORY)

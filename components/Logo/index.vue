@@ -1,8 +1,19 @@
 <template lang="pug">
   .logo
     nuxt-link(to='/', rel='noopener noreferrer')
-      h1 YKPINE
+      h1 {{ title }}
 </template>
+
+<script>
+export default {
+  props: {
+    title: {
+      type: String,
+      default: 'YKPINE'
+    }
+  }
+}
+</script>
 
 <style lang="sass">
 .logo
@@ -13,6 +24,5 @@
     line-height: 60px
     font-size: 1.75rem
     color: #40a9ff
-    // color: #33a956
     text-align: center
 </style>

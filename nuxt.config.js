@@ -13,16 +13,16 @@ module.exports = {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
-      }
+        content: process.env.npm_package_description || '',
+      },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href: '//at.alicdn.com/t/font_1321745_dxvq7bxkc5o.css'
-      }
-    ]
+        href: '//at.alicdn.com/t/font_1321745_dxvq7bxkc5o.css',
+      },
+    ],
   },
   /*
    ** Customize the progress-bar color
@@ -42,26 +42,24 @@ module.exports = {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
     // '@nuxtjs/eslint-module'
   ],
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  // axios: {
-  //   prefix: '/api',
-  //   proxy: true
-  // },
-  // proxy: {
-  //   '/api/': {
-  //     target: 'http://localhost:5381/api',
-  //     changeOrigin: true,
-  //     pathRewrite: {
-  //       '^/api/': ''
-  //     }
-  //   }
-  // },
+  axios: {
+    proxy: true,
+  },
+  proxy: {
+    '/api/': {
+      target: 'https://ykpine.com/api/',
+      pathRewrite: {
+        '^/api/': '',
+      },
+    },
+  },
   /*
    ** Build configuration
    */
@@ -76,23 +74,23 @@ module.exports = {
       plugins: {
         // 通过传递 false 来禁用插件
         'postcss-url': false,
-        'postcss-nested': {}
+        'postcss-nested': {},
         // 'postcss-responsive-type': {},
         // 'postcss-hexrgba': {}
       },
       preset: {
         // 更改postcss-preset-env 设置
         autoprefixer: {
-          grid: true
-        }
-      }
-    }
+          grid: true,
+        },
+      },
+    },
   },
   server: {
     port: 5380,
-    host: '0.0.0.0'
+    host: '0.0.0.0',
   },
   router: {
-    base: process.env.DEPLOY_ENV === 'GH_PAGES' ? 'ykpine' : '/'
-  }
+    base: process.env.DEPLOY_ENV === 'GH_PAGES' ? 'ykpine' : '/',
+  },
 }

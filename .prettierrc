@@ -2,5 +2,5 @@
   "printWidth": 240,
   "semi": false,
   "singleQuote": true,
-  "trailingComma": "none"
+  "trailingComma": "es5"
 }

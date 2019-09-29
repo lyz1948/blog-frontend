@@ -1,29 +1,36 @@
 <template lang="pug">
-  .container
-    Header
-    .content
-      .layout.clearfix
-        .main
-          nuxt
-        .sider
-          Category
-          Tag
-
+.container
+  Header(:siteInfo="getOption")
+  .content
+    .layout.clearfix
+      .main
+        nuxt
+      .sider
+        Category
+        Tag
+  Footer
 </template>
 
 <script>
-import 'normalize.css';
-import Header from '~/components/Header';
-import Category from '~/components/Category';
-import Tag from '~/components/Tag';
+import 'normalize.css'
+import Header from '~/components/Header'
+import Footer from '~/components/Footer'
+import Category from '~/components/Category'
+import Tag from '~/components/Tag'
 
 export default {
   components: {
     Header,
+    Footer,
     Category,
-    Tag
+    Tag,
+  },
+  computed: {
+    getOption() {
+      return this.$store.state.siteInfo
+    }
   }
-};
+}
 </script>
 <style lang="sass">
 

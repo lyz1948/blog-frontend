@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { getStatus } from '~/utils'
-// const CONFIG = require('~/config')
+const CONFIG = require('~/config')
 
 const service = axios.create({
-  baseURL: 'http://localhost:5381/api',
+  baseURL: CONFIG.APP.apiUrl,
   timeout: 10000
 })
 
@@ -19,31 +19,27 @@ service.interceptors.response.use(response => {
   }
 })
 
-/**
- * 获取标签列表
- */
+// 获取站点信息
+export const fetchSiteInfo = () => {
+  return service.get('/site')
+}
+
+// 获取标签列表
 export const fetchTag = () => {
   return service.get('/tag')
 }
 
-/**
- * 获取分类列表
- */
+// 获取分类列表
 export const fetchCategory = () => {
   return service.get('/category')
 }
 
-/**
- * 获取文章列表
- */
+// 获取文章列表
 export const fetchArticle = () => {
   return service.get('/article')
 }
 
-/**
- * 获取文章详情
- * @param {*} id 文章的id
- */
+// 获取文章详情
 export const getArticleDetail = id => {
   return service.get(`/article/${id}`)
 }

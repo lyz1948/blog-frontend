@@ -2,7 +2,7 @@
   #header.header
     .layout.header-wrap.flex
       Logo
-      //- Nav
+      h2 {{ siteInfo && siteInfo.sub_title }}
 </template>
 <script>
 import Logo from '~/components/Logo';
@@ -12,15 +12,21 @@ export default {
     Logo,
     Nav
   },
-  data() {
-    return {
-      current: ['mail']
-    };
-  }
+  props: {
+    siteInfo: {
+      type: Object,
+      default: {}
+    }
+  },
 };
 </script>
 <style lang="sass">
 .header
   border-bottom: 1px solid #d9d9d9
   background-color: #06050c
+  h2
+    color: #fff
+    line-height: 3.75rem
+    padding-left: 1.25rem
+
 </style>

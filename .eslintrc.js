@@ -19,8 +19,8 @@ module.exports = {
       'error',
       {
         arrays: 'never',
-        objects: 'never',
-        imports: 'never',
+        objects: 'always-multiline',
+        imports: 'always-multiline',
         exports: 'never',
         functions: 'ignore',
       },

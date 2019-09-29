@@ -7,7 +7,7 @@
 
       .bd
         .cover.img-full
-          img(:src='"http://localhost:5381/uploads/" + article.thumb', alt='图片')
+          img(:src='article.thumb', alt='图片')
         div.content.mt20(v-html='article.content')
 
       .ft.flex
@@ -33,6 +33,7 @@
 
 <script>
 import { formatTime } from '~/utils';
+
 export default {
   filters: {
     formatDate(ms) {
@@ -58,6 +59,7 @@ export default {
 
   .info
     padding-right: 20px
+    padding-bottom: 20px
     color: #333
 
     .hd
