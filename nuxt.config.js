@@ -22,6 +22,10 @@ module.exports = {
         rel: 'stylesheet',
         href: '//at.alicdn.com/t/font_1321745_dxvq7bxkc5o.css',
       },
+      {
+        rel: 'stylesheet',
+        href: '//fonts.googleapis.com/css?family=Source+Sans+Pro|Yantramanav&display=swap',
+      },
     ],
   },
   /*

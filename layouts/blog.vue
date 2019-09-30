@@ -1,13 +1,12 @@
 <template lang="pug">
 .container
   Header(:siteInfo="getOption")
-  .content
-    .layout.clearfix
-      .main
-        nuxt
-      .sider
-        Category
-        Tag
+  #content.layout.clearfix
+    .main
+      nuxt
+    .sider
+      Category
+      Tag
   Footer
 </template>
 
@@ -33,6 +32,14 @@ export default {
 }
 </script>
 <style lang="sass">
+.container
+  position: absolute
+  height: 100%
+  width: 100%
+
+#content
+  padding-top: 60px
+  min-height: calc(100% - 60px)
 
 .main,
 .sider,

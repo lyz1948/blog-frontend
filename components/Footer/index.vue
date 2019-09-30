@@ -2,10 +2,12 @@
   #footer.footer
     .layout.footer-wrap.flex
       Logo
-      .site-info.flex-1(v-if="getOption")
-        p {{ getOption.sub_title }}
-        p {{ getOption.icp }}
-        p {{ getOption.email }}
+      .site-info.flex.flex-1.flex-center(v-if="getOption")
+        p ©copyright 2019
+          a(:href="getOption.domain", target="_blank") {{ getOption.domain }}
+        p Powered by
+          a(href="https://zh.nuxtjs.org/", target="_blank") Nuxt.js
+
 </template>
 <script>
 import Logo from '~/components/Logo'
@@ -29,11 +31,14 @@ export default {
 </script>
 <style lang="sass">
 .footer
-  position: fixed
-  bottom: 0
-  left: 0
-  right: 0
+  line-height: 60px
   background-color: #06050c
+
   .site-info
     color: #fff
+    p
+      padding-right: 10px
+      margin: 0
+      a
+        margin-left: 10px
 </style>

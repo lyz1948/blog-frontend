@@ -10,43 +10,30 @@
           img(:src='article.thumb', alt='图片')
         div.content.mt20(v-html='article.content')
 
-      .ft.flex
-        .auth
-          span.iconfont.icon-zan
-          span {{ article.author }}
+      .ft
+        ArticleFooter(:article='article')
 
-        .created-time
-          span.iconfont.icon-date
-          span {{ article.create_at | formatDate }}
-
-        .extra.flex.flex-1
-          .item.view
-            span.iconfont.icon-eye
-            span {{ article.meta.views }}
-          .item.star
-            span.iconfont.icon-star
-            span {{ article.meta.likes }}
-          .item.star
-            span.iconfont.icon-xinxi
-            span {{ article.meta.comments }}
 </template>
 
 <script>
-import { formatTime } from '~/utils';
-
+import ArticleFooter from './footer'
+import { formatTime } from '~/utils'
 export default {
+  components: {
+    ArticleFooter,
+  },
   filters: {
     formatDate(ms) {
-      return formatTime(ms, 'YYYY-MM-DD HH:MM:SS');
-    }
+      return formatTime(ms, 'YYYY-MM-DD HH:MM:SS')
+    },
   },
   props: {
     article: {
       type: Object,
-      required: true
-    }
-  }
-};
+      required: true,
+    },
+  },
+}
 </script>
 <style lang="sass">
 .article-detail
@@ -73,18 +60,18 @@ export default {
       padding: 20px 0
       font-size: 16px
 
-    .ft
-      span
-        display: inline-block
-        padding-right: 10px
-        cursor: default
+    // .ft
+    //   span
+    //     display: inline-block
+    //     padding-right: 10px
+    //     cursor: default
 
-      .iconfont
-        padding-right: 6px
-        color: #969696
+    //   .iconfont
+    //     padding-right: 6px
+    //     color: #969696
 
-      .extra
-        padding-left: 30px
-      .item
-        text-align: right
+    //   .extra
+    //     padding-left: 30px
+    //   .item
+    //     text-align: right
 </style>

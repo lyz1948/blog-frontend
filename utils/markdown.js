@@ -1,4 +1,7 @@
-import 'highlight.js/styles/github.css'
+// import 'highlight.js/styles/github.css'
+// import 'highlight.js/styles/agate.css'
+import 'highlight.js/styles/dracula.css'
+import 'highlight.js/styles/atom-one-dark.css'
 import hljs from 'highlight.js'
 import md from 'markdown-it'
 
@@ -16,7 +19,7 @@ const markdown = md({
 
     // eslint-disable-next-line prettier/prettier
     return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>'
-  }
+  },
 })
 
 export default markdown

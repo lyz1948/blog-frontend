@@ -7,43 +7,30 @@
       .bd
         p {{ article.description }}
 
-      .ft.flex
-        .auth
-          span.iconfont.icon-zan
-          span {{ article.author }}
-        .created-time
-          span.iconfont.icon-date
-          span {{ article.create_at | formatDate }}
-        .extra.flex.flex-1
-          .item.view
-            span.iconfont.icon-eye
-            span {{ article.meta.views }}
-          .item.star
-            span.iconfont.icon-star
-            span {{ article.meta.likes }}
-          .item.star
-            span.iconfont.icon-xinxi
-            span {{ article.meta.comments }}
+      .ft
+        ArticleFooter(:article='article')
 
     .cover.img-full
       img(:src='article.thumb', alt='图片')
 </template>
 
 <script>
-import { formatTime } from '~/utils';
+import ArticleFooter from './footer'
+import { formatTime } from '~/utils'
 export default {
+  components: { ArticleFooter },
   filters: {
     formatDate(ms) {
-      return formatTime(ms, 'YYYY-MM-DD HH:MM:SS');
-    }
+      return formatTime(ms, 'YYYY-MM-DD HH:MM:SS')
+    },
   },
   props: {
     article: {
       type: Object,
-      required: true
-    }
-  }
-};
+      required: true,
+    },
+  },
+}
 </script>
 <style lang="sass">
 .article
