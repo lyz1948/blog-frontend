@@ -20,19 +20,21 @@ export default {
   },
 };
 </script>
-<style lang="sass">
+<style lang="stylus">
+@import '~assets/styles/variables.styl'
+
 .header
   position: fixed
   top: 0
   left: 0
   right: 0
-  border-bottom: 1px solid #d9d9d9
-  background-color: #06050c
   height: 60px
+  background: rgba(#e4eff5, .5)
   box-sizing: border-box
   z-index: 9
   h2
-    color: #fff
+    color: $text-dark
+    font-weight: 700
     line-height: 3.75rem
     padding-left: 1.25rem
 </style>

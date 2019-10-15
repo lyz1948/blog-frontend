@@ -1,7 +1,10 @@
 html
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif
+  font-family: 'Source Sans Pro', 'Hiragino Sans GB', 'Microsoft Yahei', SimSun, Helvetica, Arial, Sans-serif, monospace
   font-size: 12px
   word-spacing: 1px
+  line-height: 1.4em
+  color: #58666e
+  background-color: transparent
   -ms-text-size-adjust: 100%
   -webkit-text-size-adjust: 100%
   -moz-osx-font-smoothing: grayscale
@@ -10,7 +13,7 @@ html
   min-height: 100%
   overflow-x: hidden
 
-h1,h2,h3,h4,h5,h6
+h1, h2, h3, h4, h5, h6
   margin: 0
 
 ul
@@ -52,8 +55,9 @@ ul
 
 .line
   position: relative
+
   &::after
-    content: ""
+    content: ''
     position: absolute
     left: 0
     top: 0
@@ -64,4 +68,8 @@ ul
 .img-full img
   width: 100%
   height: 100%
+
+.theme-light
+  color: #58666e
+  background-color: #edf1f2
 

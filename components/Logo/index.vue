@@ -15,7 +15,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="stylus">
 .logo
   width: 120px
   h1

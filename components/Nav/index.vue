@@ -17,7 +17,7 @@ export default {
   }
 }
 </script>
-<style lang="sass">
+<style lang="stylus">
 .nav
   padding-left: 20px
   ul

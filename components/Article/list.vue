@@ -19,7 +19,7 @@ export default {
 }
 </script>
 
-<style lang="sass">
+<style lang="stylus">
 .article-list
   .article
     padding-bottom: 20px

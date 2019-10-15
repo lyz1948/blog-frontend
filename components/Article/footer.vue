@@ -1,10 +1,10 @@
 <template lang="pug">
   .article-foot.flex(v-if="article")
     .auth
-      span.iconfont.icon-zan
+      span.iconfont.icon-user
       span {{ article.author }}
     .created-time
-      span.iconfont.icon-date
+      span.iconfont.icon-clock
       span {{ article.create_at | formatDate }}
     .extra.flex.flex-1
       .item.view
@@ -34,20 +34,22 @@ export default {
   }
 };
 </script>
-<style lang="sass">
+<style lang="stylus">
+@import '~assets/styles/variables.styl'
 .article-foot
+  padding: 1.25rem 0
   color: rgba(0, 0, 0, .85)
 
   span
     display: inline-block
     padding-right: 10px
     font-weight: 500
-    color: #57676f
+    color: $text-dark-light
 
   .iconfont
     padding-right: 6px
-    color: #57676f
-    font-size: 18px
+    color: $text-dark-light
+    font-size: $text-small
 
   .extra
     padding-left: 30px
@@ -55,5 +57,5 @@ export default {
       cursor: pointer
       &:hover
         .iconfont, & > span
-          color: #40a9ff
+          color: $text-active
 </style>

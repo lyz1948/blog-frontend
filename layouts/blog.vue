@@ -1,12 +1,15 @@
 <template lang="pug">
-.container
+#content
+  .mask
   Header(:siteInfo="getOption")
-  #content.layout.clearfix
+  .layout.clearfix
     .main
       nuxt
     .sider
-      Category
-      Tag
+      .sider-box
+        Category
+      .sider-box
+        Tag
   Footer
 </template>
 
@@ -31,34 +34,52 @@ export default {
   }
 }
 </script>
-<style lang="sass">
-.container
+<style lang="stylus">
+$pad = 1.25rem
+$width = 15.63rem
+
+.mask
   position: absolute
+  top: 0
+  bottom: 0
   height: 100%
   width: 100%
+  background: url('~assets/img/bg.jpg') no-repeat
+  filter: blur(3px)
+  z-index: -1
 
 #content
+  position: relative
   padding-top: 60px
   min-height: calc(100% - 60px)
+  background: rgba(255, 255, 255, 0.8)
 
-.main,
-.sider,
-.right
+.main, .sider, .right
   float: left
 
-.sider,
-.right
-  width: 250px
-  padding: 20px
+.sider, .right
+  width: $width - $pad
   min-height: 100%
+  margin-top: 20px
 
 .main
   width: 100%
-  background: #fff
+  background: #f1f3f4
 
 .section
-  padding-right: 250px
+  padding-right: $width
 
 .sider
-  margin-left: -250px
+  margin-left: - $width
+
+  .sider-box
+    margin-bottom: $pad
+    padding: 20px
+    background: #f9f9f9
+    box-sizing: border-box
+
+    .title
+      margin-bottom: 10px
+      font-size: $text-large
+      color: $text-dark
 </style>

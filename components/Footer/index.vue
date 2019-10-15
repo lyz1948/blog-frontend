@@ -1,7 +1,6 @@
 <template lang="pug">
-  #footer.footer
-    .layout.footer-wrap.flex
-      Logo
+  .footer
+    .layout
       .site-info.flex.flex-1.flex-center(v-if="getOption")
         p ©copyright 2019
           a(:href="getOption.domain", target="_blank") {{ getOption.domain }}
@@ -10,18 +9,8 @@
 
 </template>
 <script>
-import Logo from '~/components/Logo'
 
 export default {
-  components: {
-    Logo,
-  },
-  props: {
-    data: {
-      type: Object,
-      default: null
-    }
-  },
   computed: {
     getOption() {
       return this.$store.state.siteInfo
@@ -29,13 +18,16 @@ export default {
   }
 }
 </script>
-<style lang="sass">
+<style lang="stylus">
+@import '~assets/styles/variables.styl'
 .footer
   line-height: 60px
-  background-color: #06050c
+  margin-top: 20px
+  background: transparent
 
   .site-info
-    color: #fff
+    font-weight: 500
+    color: $text-dark
     p
       padding-right: 10px
       margin: 0

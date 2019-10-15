@@ -20,7 +20,7 @@ module.exports = {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       {
         rel: 'stylesheet',
-        href: '//at.alicdn.com/t/font_1321745_dxvq7bxkc5o.css',
+        href: '//at.alicdn.com/t/font_1321745_nxmw2yuukyg.css',
       },
       {
         rel: 'stylesheet',
@@ -35,7 +35,7 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: ['ant-design-vue/dist/antd.css', '@/assets/styles/index.sass'],
+  css: ['ant-design-vue/dist/antd.css', 'swiper/css/swiper.min.css', '@/assets/styles/index.styl'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -58,7 +58,7 @@ module.exports = {
   },
   proxy: {
     '/api/': {
-      target: 'https://ykpine.com/api/',
+      target: 'https://www.ykpine.com/api/',
       pathRewrite: {
         '^/api/': '',
       },
