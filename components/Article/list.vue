@@ -1,20 +1,22 @@
 <template lang="pug">
-  .article-list(v-if='getList')
-    Article(v-for='article in getList.data', :key='article._id', :article='article')
+  .article-list(v-if='articles && articles.length > 0')
+    Article(v-for='article in articles', :key='article._id', :article='article')
 
-  .article-list(v-else) 暂无文章
+  .article-list.tac(v-else) 暂无文章
 </template>
 
 <script>
 import Article from './index'
+import { mapGetters } from 'vuex'
+
 export default {
   components: {
     Article
   },
   computed: {
-    getList() {
-      return this.$store.state.article.list
-    }
+    ...mapGetters('article', {
+      articles: 'getArticles'
+    })
   }
 }
 </script>

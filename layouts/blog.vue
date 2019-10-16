@@ -10,7 +10,7 @@
         Category
       .sider-box
         Tag
-  Footer
+  Footer(:siteInfo="getOption")
 </template>
 
 <script>
@@ -29,7 +29,7 @@ export default {
   },
   computed: {
     getOption() {
-      return this.$store.state.siteInfo
+      return this.$store.state.data
     }
   }
 }
@@ -50,9 +50,9 @@ $width = 15.63rem
 
 #content
   position: relative
-  padding-top: 60px
-  min-height: calc(100% - 60px)
-  background: rgba(255, 255, 255, 0.8)
+  padding-top: 80px
+  height: calc(100% - 80px)
+  background: rgba(224, 223, 223, 0.8)
 
 .main, .sider, .right
   float: left
@@ -68,6 +68,7 @@ $width = 15.63rem
 
 .section
   padding-right: $width
+  box-shadow: 5px 3px 7px 0px #bfbfbf
 
 .sider
   margin-left: - $width

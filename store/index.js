@@ -2,19 +2,30 @@ import { fetchSiteInfo } from '~/api'
 
 import { SITE_INFO } from '~/constants'
 
-export const state = () => ({
-  siteInfo: {},
+const state = () => ({
+  data: {},
 })
 
-export const actions = {
+const getters = {
+  getSiteInfo: state => state.siteInfo,
+}
+
+const actions = {
   async SITE_INFO({ commit }) {
     const { result } = await fetchSiteInfo()
     commit(SITE_INFO, result)
   },
 }
 
-export const mutations = {
+const mutations = {
   SITE_INFO(state, payload) {
-    state.siteInfo = payload
+    state.data = payload
   },
+}
+
+export default {
+  state,
+  getters,
+  actions,
+  mutations,
 }

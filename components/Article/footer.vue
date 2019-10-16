@@ -54,8 +54,8 @@ export default {
   .extra
     padding-left: 30px
     .item
-      cursor: pointer
-      &:hover
-        .iconfont, & > span
-          color: $text-active
+      cursor: default
+      // &:hover
+      //   .iconfont, & > span
+      //     color: $text-active
 </style>

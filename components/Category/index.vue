@@ -1,17 +1,24 @@
 <template lang="pug">
   .category
     h3.title 分类
-    .category(v-if='getList')
-      .item(v-for="cate in getList", :key="cate._id")
+    .category(v-if='categories')
+      .item(v-for="cate in categories", :key="cate._id", @click="handleCategory(cate._id)")
         span.iconfont.icon-ts-maintenance
         span.name {{ cate.name }}
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import { FILTER_CATEGORY } from '~/constants'
 export default {
   computed: {
-    getList() {
-      return this.$store.state.category.list.data
+    ...mapGetters('category', {
+      categories: 'getCategories'
+    }),
+  },
+  methods: {
+    handleCategory(id) {
+      this.$store.dispatch(FILTER_CATEGORY, id)
     }
   }
 };

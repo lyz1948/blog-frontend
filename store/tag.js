@@ -2,19 +2,30 @@ import { fetchTag } from '~/api'
 
 import { TAG_LIST } from '~/constants'
 
-export const state = () => ({
-  list: []
+const state = () => ({
+  tag: null,
 })
 
-export const actions = {
+const getters = {
+  getTags: state => state.tag && state.tag.data,
+}
+
+const actions = {
   async TAG_LIST({ commit }) {
     const { result } = await fetchTag()
     commit(TAG_LIST, result)
-  }
+  },
 }
 
-export const mutations = {
+const mutations = {
   TAG_LIST(state, payload) {
-    state.list = payload
-  }
+    state.tag = payload
+  },
+}
+
+export default {
+  state,
+  getters,
+  actions,
+  mutations,
 }

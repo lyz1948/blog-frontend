@@ -1,12 +1,13 @@
 <template lang="pug">
   .tag
     h3.title 标签
-    .tag-list(v-if='getList')
-      .tag-item(v-for='(tag, index) in getList', :key='tag._id')
+    .tag-list(v-if='tags')
+      .tag-item(v-for='(tag, index) in tags', :key='tag._id')
         span.name {{ tag.name }}
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
@@ -14,9 +15,9 @@ export default {
     }
   },
   computed: {
-    getList() {
-      return this.$store.state.tag.list.data;
-    }
+    ...mapGetters('tag', {
+      tags: 'getTags'
+    })
   }
 };
 </script>

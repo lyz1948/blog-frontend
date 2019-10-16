@@ -2,19 +2,30 @@ import { fetchCategory } from '~/api'
 
 import { CATEGORY_LIST } from '~/constants'
 
-export const state = () => ({
-  list: []
+const state = () => ({
+  category: null,
 })
 
-export const actions = {
+const getters = {
+  getCategories: state => state.category && state.category.data,
+}
+
+const actions = {
   async CATEGORY_LIST({ commit }) {
     const { result } = await fetchCategory()
     commit(CATEGORY_LIST, result)
-  }
+  },
 }
 
-export const mutations = {
+const mutations = {
   CATEGORY_LIST(state, payload) {
-    state.list = payload
-  }
+    state.category = payload
+  },
+}
+
+export default {
+  state,
+  getters,
+  actions,
+  mutations,
 }

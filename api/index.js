@@ -1,10 +1,10 @@
 import axios from 'axios'
-import { getStatus } from '~/utils'
+import { getStatus, formatQuery } from '~/utils'
 const CONFIG = require('~/config')
 
 const service = axios.create({
   baseURL: CONFIG.APP.apiUrl,
-  timeout: 10000
+  timeout: 6000,
 })
 
 service.interceptors.request.use(config => {
@@ -35,8 +35,10 @@ export const fetchCategory = () => {
 }
 
 // 获取文章列表
-export const fetchArticle = () => {
-  return service.get('/article')
+export const fetchArticle = (querys = { page: 1 }) => {
+  const url = 'article'
+  const queryUrl = formatQuery(url, querys)
+  return service.get(queryUrl)
 }
 
 // 获取文章详情

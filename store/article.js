@@ -1,42 +1,57 @@
 import { fetchArticle, getArticleDetail } from '~/api'
-import { ARTICLE_LIST, DETAIL } from '~/constants'
+import { ARTICLE_LIST, ARTICLE_DETAIL } from '~/constants'
 import markdown from '~/utils/markdown'
 import * as CONFIG from '@/config'
 
-export const state = () => ({
-  list: [],
-  detail: '',
+// 处理代码与缩略图
+const formatArticle = list => {
+  list.map(post => {
+    post.content = markdown.render(post.content)
+    post.thumb = CONFIG.APP.prefix + post.thumb
+  })
+  return list
+}
+
+const state = () => ({
+  articles: null,
+  article: '',
 })
 
-export const actions = {
-  async ARTICLE_LIST({ commit }) {
-    const { result } = await fetchArticle()
-    result.data.map(post => {
-      post.content = markdown.render(post.content)
-      post.thumb = CONFIG.APP.prefix + post.thumb
-    })
+const getters = {
+  getArticles: state => state.articles && state.articles.data,
+  getArticle: state => state.article,
+}
+
+const actions = {
+  async ARTICLE_LIST({ commit }, querys) {
+    const { result } = await fetchArticle(querys)
+    result.data = formatArticle(result.data)
+
     commit(ARTICLE_LIST, result)
   },
-  async DETAIL({ commit }, params) {
-    const { article_id: id } = params
+  async ARTICLE_DETAIL({ commit }, param) {
+    const { article_id: id } = param
     const { result } = await getArticleDetail(id)
-    result.content = markdown.render(result.content)
-    result.thumb = CONFIG.APP.prefix + result.thumb
-    commit(DETAIL, result)
+    const [data] = formatArticle([result])
+    commit(ARTICLE_DETAIL, data)
+  },
+  async ARTICLE_CATEGORY({ dispatch }, id) {
+    await dispatch(ARTICLE_LIST, { category: id })
   },
 }
 
-export const mutations = {
+const mutations = {
   ARTICLE_LIST(state, payload) {
-    state.list = payload
+    state.articles = payload
   },
-  DETAIL(state, payload) {
-    state.detail = payload
+  ARTICLE_DETAIL(state, payload) {
+    state.article = payload
   },
 }
 
-export const getters = {
-  articles(state) {
-    return state.list
-  },
+export default {
+  state,
+  getters,
+  actions,
+  mutations,
 }
