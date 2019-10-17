@@ -6,8 +6,8 @@
 
 <script>
 import ArticleDetail from '~/components/Article/detail'
-import * as types from '~/constants'
 import { mapState, mapGetters } from 'vuex'
+import * as types from '~/constants'
 
 export default {
   layout: 'blog',
@@ -15,23 +15,18 @@ export default {
     ArticleDetail
   },
   computed: {
-    article() {
-      return this.$store.state.article.article
-    },
-    tags() {
-      return this.$store.state.tag.tag
-    },
-    categories() {
-      return this.$store.state.category.category
-    },
+    ...mapGetters(types.ARTICLE, {
+      article: 'getArticle'
+    })
   },
   async fetch({ store, params }) {
-    await store.dispatch(types.FETCH_ARTICLE, params)
-    if (!store.state.tag) {
-      await store.dispatch(types.BATCH_TAG)
+    await store.dispatch(types.ARTICLE + '/' + types.FETCH_DETAIL, params)
+    // 刷新页面处理
+    if (!store.state.tag.length) {
+      await store.dispatch(types.TAG + '/' + types.FETCH_DATA)
     }
-    if (!store.state.category) {
-      await store.dispatch(types.BATCH_CATEGORY)
+    if (!store.state.category.length) {
+      await store.dispatch(types.CATEGORY + '/' + types.FETCH_DATA)
     }
   }
 }

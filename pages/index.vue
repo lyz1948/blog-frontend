@@ -30,10 +30,10 @@ export default {
   async fetch({ store }) {
     if (this.isFetched) return
     this.isFetched = true
-    await store.dispatch(types.SITE_INFO)
-    await store.dispatch(types.BATCH_TAG)
-    await store.dispatch(types.BATCH_CATEGORY)
-    await store.dispatch(types.BATCH_ARTICLE)
+    await store.dispatch(types.FETCH_DATA)
+    await store.dispatch(types.TAG + '/' + types.FETCH_DATA)
+    await store.dispatch(types.CATEGORY + '/' + types.FETCH_DATA)
+    await store.dispatch(types.ARTICLE + '/' + types.FETCH_DATA)
   }
 }
 </script>

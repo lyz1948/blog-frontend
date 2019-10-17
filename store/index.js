@@ -1,25 +1,35 @@
 import { fetchSiteInfo } from '~/api'
-
-import { SITE_INFO } from '~/constants'
+import * as types from '~/constants'
 
 const state = () => ({
+  isFetch: false,
   data: {},
 })
 
 const getters = {
-  getSiteInfo: state => state.siteInfo,
+  getSiteInfo: state => state.data,
 }
 
 const actions = {
-  async SITE_INFO({ commit }) {
-    const { result } = await fetchSiteInfo()
-    commit(SITE_INFO, result)
+  [types.FETCH_DATA]({ commit }) {
+    commit(types.FETCH_DATA, { isFetch: true, data: {} })
+    return fetchSiteInfo()
+      .then(res => {
+        const { result } = res
+        commit(types.FETCH_DATA, { isFetch: false, data: result })
+      })
+      .catch(err => {
+        commit(types.FETCH_DATA, { isFetch: false, data: {} })
+        return Promise.reject(err)
+      })
   },
 }
 
 const mutations = {
-  SITE_INFO(state, payload) {
-    state.data = payload
+  [types.FETCH_DATA](state, payload) {
+    const { isFetch, data } = payload
+    state.isFetch = isFetch
+    state.data = data
   },
 }
 

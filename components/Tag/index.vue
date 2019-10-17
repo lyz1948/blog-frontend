@@ -1,23 +1,27 @@
 <template lang="pug">
   .tag
     h3.title 标签
-    .tag-list(v-if='tags')
-      .tag-item(v-for='(tag, index) in tags', :key='tag._id')
+    .tag-list(v-if='tags.length > 0')
+      .tag-item(
+        v-for='(tag, index) in tags',
+        :key='tag._id',
+        @click="handleTag(tag._id)")
         span.name {{ tag.name }}
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+import * as types from '~/constants'
 export default {
-  data() {
-    return {
-      colors: ['#33b5e5', '#fb3', '#00c851', '#ff3547', '#f50', '#2db7f5', '#87d068', '#108ee9']
-    }
-  },
   computed: {
-    ...mapGetters('tag', {
+    ...mapGetters(types.TAG, {
       tags: 'getTags'
     })
+  },
+  methods: {
+    handleTag(id) {
+      this.$store.dispatch(types.ARTICLE + '/' + types.FETCH_DATA, { [types.TAG]: id })
+    }
   }
 };
 </script>
@@ -36,9 +40,9 @@ export default {
       padding: 5px 9px
       font-size: 12px
       border: 1px solid #f1f1f1
-      border-radius: 2px
+      border-radius: 4px
       background-color: #efefef
-      color: $text-dark
+      color: $text-dark-light
       text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2)
       cursor: pointer
 

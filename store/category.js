@@ -1,25 +1,37 @@
 import { fetchCategory } from '~/api'
-
-import { CATEGORY_LIST } from '~/constants'
+import * as types from '~/constants'
 
 const state = () => ({
-  category: null,
+  isFetch: false,
+  data: [],
 })
 
 const getters = {
-  getCategories: state => state.category && state.category.data,
+  getCategories: state => state.data,
 }
 
 const actions = {
-  async CATEGORY_LIST({ commit }) {
-    const { result } = await fetchCategory()
-    commit(CATEGORY_LIST, result)
+  // 获取分类列表
+  [types.FETCH_DATA]({ commit }) {
+    commit(types.FETCH_DATA, { isFetch: true, data: [] })
+    return fetchCategory()
+      .then(res => {
+        const { result } = res
+        commit(types.FETCH_DATA, { isFetch: false, data: result.data })
+      })
+      .catch(err => {
+        commit(types.FETCH_DATA, { isFetch: false, data: [] })
+        return Promise.reject(err)
+      })
   },
 }
 
 const mutations = {
-  CATEGORY_LIST(state, payload) {
-    state.category = payload
+  // 分类列表
+  [types.FETCH_DATA](state, payload) {
+    const { isFetch, data } = payload
+    state.data = data
+    state.isFetch = isFetch
   },
 }
 

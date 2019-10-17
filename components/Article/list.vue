@@ -1,6 +1,6 @@
 <template lang="pug">
-  .article-list(v-if='articles && articles.length > 0')
-    Article(v-for='article in articles', :key='article._id', :article='article')
+  .article-list(v-if='articles && articles.data.length > 0')
+    Article(v-for='article in articles.data', :key='article._id', :article='article')
 
   .article-list.tac(v-else) 暂无文章
 </template>
@@ -8,13 +8,14 @@
 <script>
 import Article from './index'
 import { mapGetters } from 'vuex'
+import * as types from '~/constants'
 
 export default {
   components: {
     Article
   },
   computed: {
-    ...mapGetters('article', {
+    ...mapGetters(types.ARTICLE, {
       articles: 'getArticles'
     })
   }

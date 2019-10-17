@@ -1,25 +1,37 @@
 import { fetchTag } from '~/api'
-
-import { TAG_LIST } from '~/constants'
+import * as types from '~/constants'
 
 const state = () => ({
-  tag: null,
+  isFetch: false,
+  data: [],
 })
 
 const getters = {
-  getTags: state => state.tag && state.tag.data,
+  getTags: state => state.data,
 }
 
 const actions = {
-  async TAG_LIST({ commit }) {
-    const { result } = await fetchTag()
-    commit(TAG_LIST, result)
+  // 获取标签列表
+  [types.FETCH_DATA]({ commit }) {
+    commit(types.FETCH_DATA, { isFetch: true, data: [] })
+    return fetchTag()
+      .then(res => {
+        const { result } = res
+        commit(types.FETCH_DATA, { isFetch: false, data: result.data })
+      })
+      .catch(err => {
+        commit(types.FETCH_DATA, { isFetch: false, data: [] })
+        return Promise.reject(err)
+      })
   },
 }
 
 const mutations = {
-  TAG_LIST(state, payload) {
-    state.tag = payload
+  // 标签列表
+  [types.FETCH_DATA](state, payload) {
+    const { isFetch, data } = payload
+    state.isFetch = isFetch
+    state.data = data
   },
 }
 
