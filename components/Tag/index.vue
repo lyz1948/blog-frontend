@@ -1,12 +1,13 @@
 <template lang="pug">
   .tag
     h3.title 标签
-    .tag-list(v-if='tags.length > 0')
+    .tag-list(v-if="tags.length > 0")
       .tag-item(
-        v-for='(tag, index) in tags',
-        :key='tag._id',
+        v-for="(tag, index) in tags",
+        :key="tag._id",
         @click="handleTag(tag._id)")
-        span.name {{ tag.name }}
+        nuxt-link(to="/")
+          span.name {{ tag.name }}
 </template>
 
 <script>

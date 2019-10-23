@@ -1,9 +1,9 @@
 <template lang="pug">
   .section
-    .page
-      .swiper-warp
-        MySwiper(:list="banners")
-      ArticleList
+    .swiper-warp
+      MySwiper(:list="banners")
+    .mt20
+    ArticleList
 </template>
 
 <script>
@@ -22,8 +22,11 @@ export default {
     return {
       isFetched: false,
       banners: [
-        'https://static.surmon.me/FjFP6eoKlnmserSMLDAILX1guauY?imageView2/1/w/1190/h/420/format/webp/interlace/1/q/80|watermark/2/text/U3VybW9uLm1l/font/Y2FuZGFyYQ==/fontsize/680/fill/I0ZGRkZGRg==/dissolve/30/gravity/SouthWest/dx/30/dy/15|imageslim',
-        'https://static.surmon.me/FrkYADJJj0kFwHEkUXl14ZHj5YMS?imageView2/1/w/1190/h/420/format/webp/interlace/1/q/80|watermark/2/text/U3VybW9uLm1l/font/Y2FuZGFyYQ==/fontsize/680/fill/I0ZGRkZGRg==/dissolve/30/gravity/SouthWest/dx/30/dy/15|imageslim'
+        'http://cdn.ykpine.com/image/px500_1.png',
+        'http://cdn.ykpine.com/image/px500_2.png',
+        'http://cdn.ykpine.com/image/px500_3.png',
+        'http://cdn.ykpine.com/image/px500_4.png',
+        'http://cdn.ykpine.com/image/px500_5.png',
       ]
     }
   },
@@ -34,6 +37,35 @@ export default {
     await store.dispatch(types.TAG + '/' + types.FETCH_DATA)
     await store.dispatch(types.CATEGORY + '/' + types.FETCH_DATA)
     await store.dispatch(types.ARTICLE + '/' + types.FETCH_DATA)
+  },
+  mounted() {
+    let text = `(^_^) ${decodeURIComponent(this.getOption.sub_title)} - ${this.getOption.title}  `
+    let timerId
+    const loopTitle = () => {
+      clearTimeout(timerId)
+      document.title = text.substring(1, text.length) + text.substring(0, 1)
+      text = document.title.substring(0, text.length)
+      timerId = setTimeout(loopTitle, 800)
+    }
+    loopTitle()
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState == 'hidden') {
+        document.title = 'Oh, My God!'
+        clearTimeout(timerId)
+      } else {
+        loopTitle()
+      }
+    })
+  },
+  computed: {
+    getOption() {
+      return this.$store.state.data
+    }
+  },
+  watch: {
+    '$router': function() {
+      console.log('router')
+    }
   }
 }
 </script>
@@ -41,9 +73,11 @@ export default {
 <style lang="stylus" scoped>
 .section
   .swiper-warp
-    height: 200px
+    height: 300px
+
     .swiper-container
       height: 100%
+
   .page
     padding: 20px
 </style>

@@ -17,10 +17,10 @@ module.exports = {
       },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/yk.ico' },
       {
         rel: 'stylesheet',
-        href: '//at.alicdn.com/t/font_1321745_nxmw2yuukyg.css',
+        href: '//at.alicdn.com/t/font_1321745_kggv2omezkf.css',
       },
       {
         rel: 'stylesheet',
@@ -39,7 +39,7 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/antd-ui'],
+  plugins: ['@/plugins/antd-ui', { src: '~plugins/ga.js', ssr: false }],
   /*
    ** Nuxt.js modules
    */
@@ -48,6 +48,14 @@ module.exports = {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     // '@nuxtjs/eslint-module'
+    // 配置选项
+    [
+      '@nuxtjs/component-cache',
+      {
+        max: 10000,
+        maxAge: 1000 * 60 * 60,
+      },
+    ],
   ],
   /*
    ** Axios module configuration

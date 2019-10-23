@@ -6,7 +6,7 @@
     .created-time
       span.iconfont.icon-clock
       span {{ article.create_at | formatDate }}
-    .extra.flex.flex-1
+    .extra.flex.flex-1(v-if="article.meta")
       .item.view
         span.iconfont.icon-eye
         span {{ article.meta.views }}
@@ -45,6 +45,7 @@ export default {
     padding-right: 10px
     font-weight: 500
     color: $text-dark-light
+    font-size: $text-small
 
   .iconfont
     padding-right: 6px

@@ -23,18 +23,18 @@ export default {
 @import '~assets/styles/variables.styl'
 
 .footer
-  line-height: 60px
-  margin-top: 20px
+  line-height: 3.75rem /* 60/16 */
   background: transparent
+  font-size: $text-small
 
   .site-info
     font-weight: 500
     color: $text-dark
 
     p
-      padding-right: 10px
+      padding-right: 0.63rem /* 10/16 */
       margin: 0
 
       a
-        margin-left: 10px
+        margin-left: 0.63rem /* 10/16 */
 </style>

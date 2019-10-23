@@ -1,7 +1,7 @@
 <template lang="pug">
   #header.header
     .layout.header-wrap.flex
-      Logo
+      Logo(:title="siteInfo.title")
       h2 {{ siteInfo && siteInfo.sub_title }}
 </template>
 <script>

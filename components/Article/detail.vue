@@ -1,66 +1,84 @@
 <template lang="pug">
-  .article-detail(v-if='article')
-    .info
-      .hd
-        h1 {{ article.title }}
+  .article-detail(v-if="getArticle")
+    .cover
+      img(:src="article.thumb", alt="图片")
 
-      .bd
-        .cover.img-full
-          img(:src='article.thumb', alt='图片')
+    h2.title {{ article.title }}
 
-        h3 {{ article.description }}
+    ArticleFooter(:article="article")
 
-        div.content.mt20(v-html='article.content')
+    .content
+      p.description {{ article.description }}
 
-      .ft
-        ArticleFooter(:article='article')
+      .content(v-if="article.public == 1", v-html="article.content")
 
+      div(v-else)
+        .content(v-if="article.content", v-html="article.content.substring(0, 200)")
+        .mt20
+        p 查看更多
 </template>
 
 <script>
 import ArticleFooter from './footer'
 import { formatTime } from '~/utils'
+
 export default {
   components: {
     ArticleFooter,
+  },
+  props: {
+    article: {
+      type: Object,
+      default() {
+        return {}
+      }
+    },
   },
   filters: {
     formatDate(ms) {
       return formatTime(ms, 'YYYY-MM-DD HH:MM:SS')
     },
   },
-  props: {
-    article: {
-      type: Object,
-      required: true,
+  computed: {
+    getArticle() {
+      return this.article
     },
   },
 }
 </script>
 <style lang="stylus">
-$img-width = 400px
-$img-height = 300px
+@import '~assets/styles/variables.styl'
 
 .article-detail
-  padding: 20px
+  padding: 0 1.25rem /* 20/16 */
+  background-color: #fdfdfd
 
-  .info
-    padding: 20px
-    background-color: #fdfdfd
-    .hd
-      h1
-        color: #484646
+  .cover
+    position: relative
+    width: 100%
+    height: 0
+    padding-top: 60%
 
-      h3
-        color: #736969
-        font-size: 18px
+    img
+      position: absolute
+      width: 100%
+      height: 100%
+      left: 0
+      top: 0
 
-    .bd
-      padding: 20px 0
-      font-size: 16px
+  .title
+    color: #484646
+    padding: 0.94rem 0 /* 15/16 */
+    font-size: $text-x-large
 
-      .cover
-        flex: 0 0 $img-width
-        width: $img-width
-        height: $img-height
+  .sub-title
+    padding: 1.25rem 0 /* 20/16 */
+    color: #736969
+    font-size: $text-medium
+
+  .description
+    font-size: $text-small
+
+  .content
+    padding: 1.25rem /* 20/16 */ 0
 </style>

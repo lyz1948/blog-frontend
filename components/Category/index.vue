@@ -3,8 +3,9 @@
     h3.title 分类
     .category(v-if='categories.length > 0')
       .item(v-for="cate in categories", :key="cate._id", @click="handleCategory(cate._id)")
-        span.iconfont.icon-ts-maintenance
-        span.name {{ cate.name }}
+        nuxt-link(to='/')
+          span.iconfont.icon-ts-maintenance
+          span.name {{ cate.name }}
 </template>
 
 <script>

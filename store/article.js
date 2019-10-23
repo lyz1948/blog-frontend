@@ -6,6 +6,12 @@ import { fetchArticle, getArticleDetail } from '~/api'
 // 处理代码与缩略图
 const formatArticle = list => {
   list.map(post => {
+    // 相关文章
+    if (post.related) {
+      post.related.map(it => {
+        it.thumb = CONFIG.APP.prefix + it.thumb
+      })
+    }
     post.content = markdown.render(post.content)
     post.thumb = CONFIG.APP.prefix + post.thumb
   })
@@ -81,8 +87,9 @@ const mutations = {
     state.list.data = data
     state.list.isFetch = isFetch
   },
-  // 文章详情
+  // 更新文章列表
   [types.UPDATA_DATA](state, payload) {
+    console.log('payload', payload)
     const { isFetch, data } = payload
     state.list.isFetch = isFetch
     state.list.data.data.push(data)
@@ -93,6 +100,15 @@ const mutations = {
     const { isFetch, data } = payload
     state.detail.isFetch = isFetch
     state.detail.data = data
+  },
+  // 更新文章详情
+  [types.UPDATE_DETAIL](state, payload) {
+    const { id } = payload
+    state.list.data.forEach(article => {
+      if (article.id === id) {
+        state.detail.data = article
+      }
+    })
   },
 }
 

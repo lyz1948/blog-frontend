@@ -1,15 +1,17 @@
 <template lang="pug">
-#content
+.container
   .mask
   Header(:siteInfo="getOption")
-  .layout.clearfix
-    .main
-      nuxt
+  .main.clearfix
+    .mt20
+    nuxt
     .sider
       .sider-box
         Category
       .sider-box
         Tag
+
+  .mt20
   Footer(:siteInfo="getOption")
 </template>
 
@@ -31,12 +33,13 @@ export default {
     getOption() {
       return this.$store.state.data
     }
-  }
+  },
 }
 </script>
 <style lang="stylus">
 $pad = 1.25rem
-$width = 15.63rem
+$width = 15rem /* 240/16 */
+$headHeight = 3.75rem /* 60/16 */
 
 .mask
   position: absolute
@@ -48,30 +51,26 @@ $width = 15.63rem
   filter: blur(3px)
   z-index: -1
 
-#content
+.container
   position: relative
-  padding-top: 80px
-  height: calc(100% - 80px)
+  padding-top: $headHeight
   background: rgba(224, 223, 223, 0.8)
-
-.main, .sider, .right
-  float: left
-
-.sider, .right
-  width: $width - $pad
-  min-height: 100%
-  margin-top: 20px
 
 .main
   width: 100%
+  padding: 0 calc(50% - 500px)
   background: #f1f3f4
 
 .section
-  padding-right: $width
-  box-shadow: 5px 3px 7px 0px #bfbfbf
+  float: left
+  width: 46.88rem /* 750/16 */
+  padding-right: 1.25rem /* 20/16 */
 
 .sider
-  margin-left: - $width
+  float: left
+  width: $width
+  min-height: 100%
+  box-sizing: border-box
 
   .sider-box
     margin-bottom: $pad
