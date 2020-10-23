@@ -6,19 +6,19 @@
 </template>
 
 <script>
-import Article from './index'
 import { mapGetters } from 'vuex'
+import Article from './index'
 import * as types from '~/constants'
 
 export default {
   components: {
-    Article
+    Article,
   },
   computed: {
     ...mapGetters(types.ARTICLE, {
-      articles: 'getArticles'
-    })
-  }
+      articles: 'getArticles',
+    }),
+  },
 }
 </script>
 

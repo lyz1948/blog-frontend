@@ -1,7 +1,4 @@
-// import 'highlight.js/styles/github.css'
-// import 'highlight.js/styles/agate.css'
 import 'highlight.js/styles/dracula.css'
-// import 'highlight.js/styles/atom-one-dark.css'
 import hljs from 'highlight.js'
 import md from 'markdown-it'
 

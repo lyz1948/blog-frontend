@@ -20,7 +20,6 @@
 
 <script>
 import ArticleFooter from './footer'
-import { formatTime } from '~/utils'
 
 export default {
   components: {
@@ -31,14 +30,10 @@ export default {
       type: Object,
       default() {
         return {}
-      }
+      },
     },
   },
-  filters: {
-    formatDate(ms) {
-      return formatTime(ms, 'YYYY-MM-DD HH:MM:SS')
-    },
-  },
+
   computed: {
     getArticle() {
       return this.article

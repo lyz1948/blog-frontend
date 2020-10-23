@@ -6,7 +6,7 @@
       img(:src='article.thumb', alt='图片')
 
     .info.flex-1
-      nuxt-link(:to='/article/+ article.id')
+      nuxt-link(:to='/article/+ article._id')
         h2.title {{ article.title }}
 
       .bd
@@ -19,6 +19,7 @@
 <script>
 import ArticleFooter from './footer'
 import { formatTime } from '~/utils'
+
 export default {
   components: { ArticleFooter },
   filters: {
